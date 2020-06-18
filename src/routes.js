@@ -4,7 +4,7 @@ const routes = express.Router()
 // users routes
 
 routes.get('/', function(req, res) {
-    return res.send("ok")
+    return res.render("layout.njk")
 })
 
 module.exports = routes
