@@ -202,3 +202,9 @@ form .item span {
 form .fields {
     margin-bottom: 64px;
 }
+
+/* PHOTOS UPLOAD */
+
+form .item #photos-upload {
+    position: relative;
+}
