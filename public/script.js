@@ -15,14 +15,20 @@ const Mask = {
 }
 
 const PhotosUpload = {
+    input: "",
     preview: document.querySelector('#photos-preview'),
     uploadLimit: 6,
+    files: [],
     handleFileInput(event) {
         const { files: fileList } = event.target
+        PhotosUpload.input = event.target
 
         if(PhotosUpload.hasLimit(event)) return
 
         Array.from(fileList).forEach(file => {
+
+            PhotosUpload.files.push(file)
+
             const reader = new FileReader()
         
             reader.onload = () => {
@@ -35,10 +41,11 @@ const PhotosUpload = {
         
             reader.readAsDataURL(file)
         })
+
+        PhotosUpload.input.files = PhotosUpload.getAllFiles()
     },
     hasLimit(event) {
-        const { uploadLimit } = PhotosUpload
-        const { files: fileList } = event.target
+        const { uploadLimit, input: fileList } = PhotosUpload
 
         if (fileList.length > uploadLimit) {
             alert(`Envie no máximo ${uploadLimit} fotos!`)
@@ -46,6 +53,13 @@ const PhotosUpload = {
             return true
         }
         return false
+    },
+    getAllFiles() {
+        const dataTransfer = new DataTransfer()
+
+        PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
+
+        return dataTransfer.files
     },
     getContainer(image) {
         const div = document.createElement('div')
@@ -69,6 +83,8 @@ const PhotosUpload = {
         const photosArray = Array.from(PhotosUpload.preview.children)
         const index = photosArray.indexOf(photoDiv)
 
+        PhotosUpload.files.splice(index, 1)
+        PhotosUpload.input.files = PhotosUpload.getAllFiles()
         photoDiv.remove();
     }
 }
