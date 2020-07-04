@@ -14,7 +14,7 @@ routes.post('/products', ProductController.post);
 routes.put('/products', ProductController.put);
 routes.delete('/products', ProductController.delete);
 
-
+// insert multer
 routes.get('/ads/create', function(req, res) {
     return res.redirect("/products/create")
 })
