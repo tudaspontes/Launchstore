@@ -16,9 +16,7 @@ module.exports = {
         ) VALUES ($1, $2, $3)
         RETURNING id
         `
-    data.price = data.price.replace(/\D/g, "")
-    
-    const values = [
+        const values = [
         filename,
         path,
         product_id,
