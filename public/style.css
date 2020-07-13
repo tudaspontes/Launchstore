@@ -354,6 +354,7 @@ form .item #photos-preview img {
     background: white;
     position: absolute;
     right: 0;
+    top: -80px;
     display: flex;
     align-items: center;
     justify-content: center;
