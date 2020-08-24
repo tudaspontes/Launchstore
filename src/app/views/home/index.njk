@@ -1,7 +1,6 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-
 <section class="shop container">
     <h2>Últimos Produtos</h2>
 
@@ -11,21 +10,18 @@
             <div class="product">
                 <div
                     class="image"
-                    style=                    
-                    >
-                    
+                    style="background-image: url({{product.img if product.img else '//placehold.it/500x500?text=Produto sem imagem'}})"
+                >
+                </div>
+               
                     <p>{{product.price}}</p>
                     <h4>{{product.name}}</h4>
                     
-                    <a href="/products/{{product.image}}"></a>
-                    
+                    <a href="/products/{{product.id}}" class="button">Ver produto</a>
                     </div>
 
-            </div>
         {%endfor%}
     </div>
 </section>
 
 {% endblock %}
-
-{# comment #}
